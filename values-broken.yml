@@ -1,0 +1,8 @@
+﻿replicaCount: 1
+
+ingress:
+  host: gateway.dev.localhost
+  tls: false
+
+backend:
+  port: 9999   # wrong on purpose → /api will 502

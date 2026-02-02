@@ -1,0 +1,9 @@
+﻿replicaCount: 1
+
+ingress:
+  host: gateway.dev.localhost
+  tls: false
+
+backend:
+  port: 5678
+  text: "Hello from DEV backend"

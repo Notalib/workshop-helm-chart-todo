@@ -1,0 +1,9 @@
+﻿replicaCount: 3
+
+ingress:
+  host: gateway.prod.localhost
+  tls: true
+
+backend:
+  port: 5678
+  text: "Hello from PRODUCTION backend"

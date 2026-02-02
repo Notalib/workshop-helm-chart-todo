@@ -1,0 +1,6 @@
+﻿Your gateway demo is now installed!
+
+Host: {{ .Values.ingress.host }}
+Try:
+  curl -H "Host: {{ .Values.ingress.host }}" http://127.0.0.1/
+  curl -H "Host: {{ .Values.ingress.host }}" http://127.0.0.1{{ .Values.api.publicPath }}

@@ -1,0 +1,28 @@
+﻿apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: gateway-nginx
+  labels:
+    {{- include "gateway.labels" . | nindent 4 }}
+data:
+  default.conf: |-
+    server {
+      listen 80;
+      server_name _;
+
+      location = /healthz {
+        add_header Content-Type text/plain;
+        return 200 "so healthy!\n";
+      }
+
+      location = / {
+        add_header Content-Type text/plain;
+        return 200 "gateway is up for {{ .Release.Name }}\n";
+      }
+
+      # TODO: make /api configurable using:
+      # - .Values.api.enabled (toggle)
+      # - .Values.api.publicPath (prefix)
+      # - .Values.backend.port (proxy_pass target)
+      # Also strip the prefix before proxying (rewrite)
+    }

@@ -22,7 +22,12 @@ spec:
           ports:
             - name: http
               containerPort: 80
-          # TODO: mount configmap to /etc/nginx/conf.d/default.conf via subPath
+          # DONE: mount configmap to /etc/nginx/conf.d/default.conf via subPath
+          volumeMounts:
+            - mountPath: /etc/nginx/conf.d/default.conf
+              name: gateway-nginx
+              readOnly: true
+              subPath: default.conf
           # TODO: add readiness/liveness probe to /healthz
 
         - name: backend

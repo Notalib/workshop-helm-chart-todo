@@ -12,6 +12,8 @@ spec:
       app.kubernetes.io/instance: {{ .Release.Name }}
   template:
     metadata:
+      annotations:
+        helm.revision: "{{ .Release.Name }}.{{ .Release.Revision }}"
       labels:
         app.kubernetes.io/name: {{ include "gateway.name" . }}
         app.kubernetes.io/instance: {{ .Release.Name }}
@@ -35,6 +37,16 @@ spec:
           args:
             - "-listen=:{{ .Values.backend.port }}"
             - "-text={{ .Values.backend.text }}"
-          # TODO: expose backend port, add tcpSocket probes
+          # DONE: add ports
+          ports:
+            - name: backend
+              containerPort: {{ .Values.backend.port }}
+          # TODO: add tcpSocket probes
 
       # TODO: add volumes: configMap gateway-nginx
+      volumes:
+        - configMap:
+            defaultMode: 420
+            name: gateway-nginx
+            optional: false
+          name: gateway-nginx

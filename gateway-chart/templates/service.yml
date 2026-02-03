@@ -11,6 +11,6 @@ spec:
     app.kubernetes.io/instance: {{ .Release.Name }}
   ports:
     - name: http
-      port: 80 # TODO: Template this with a value
+      port: 80 # TODO: Template this with a value?
       targetPort: http
       protocol: TCP

@@ -20,9 +20,26 @@ data:
         return 200 "gateway is up for {{ .Release.Name }}\n";
       }
 
-      # TODO: make /api configurable using:
-      # - .Values.api.enabled (toggle)
-      # - .Values.api.publicPath (prefix)
-      # - .Values.backend.port (proxy_pass target)
-      # Also strip the prefix before proxying (rewrite)
+      {{- if .Values.api.enabled }}
+      location = {{ .Values.api.publicPath }} {
+        return 308 {{ .Values.api.publicPath }}/;
+      }
+
+      location ^~ {{ .Values.api.publicPath }}/ {
+        proxy_http_version 1.1;
+
+        proxy_set_header Host              $host;
+        proxy_set_header X-Real-IP         $remote_addr;
+        proxy_set_header X-Forwarded-For   $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+
+        proxy_connect_timeout 2s;
+        proxy_send_timeout    10s;
+        proxy_read_timeout    10s;
+
+        rewrite ^{{ .Values.api.publicPath }}/?(.*)$ /$1 break;
+
+        proxy_pass http://127.0.0.1:{{ .Values.backend.port }}/;
+      }
+      {{- end }}
     }

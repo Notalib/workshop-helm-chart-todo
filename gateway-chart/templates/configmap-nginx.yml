@@ -1,7 +1,7 @@
 ﻿apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: gateway-nginx
+  name: {{ include "gateway.name" . }}-nginx
   labels:
     {{- include "gateway.labels" . | nindent 4 }}
 data:
@@ -9,18 +9,23 @@ data:
     server {
       listen 80;
       server_name _;
+      error_page 404 @sorry;
+
+      location @sorry {
+        return 404 "Gateway dead-end\n";
+      }
 
       location = /healthz {
         add_header Content-Type text/plain;
-        return 200 "so healthy!\n";
+        return 200 "Gateway stronk!\n";
       }
 
       location = / {
         add_header Content-Type text/plain;
-        return 200 "gateway is up for {{ .Release.Name }}\n";
+        return 200 "Gateway is up for {{ .Release.Name }}\n";
       }
 
-      {{- if .Values.api.enabled }}
+      # TODO: Skip the next parts if api.enabled
       location = {{ .Values.api.publicPath }} {
         return 308 {{ .Values.api.publicPath }}/;
       }
@@ -39,7 +44,7 @@ data:
 
         rewrite ^{{ .Values.api.publicPath }}/?(.*)$ /$1 break;
 
-        proxy_pass http://127.0.0.1:{{ .Values.backend.port }}/;
+        # TODO: Port to the backend is hardcoded
+        proxy_pass http://127.0.0.1:5678/;
       }
-      {{- end }}
     }

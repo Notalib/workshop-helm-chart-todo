@@ -4,5 +4,11 @@ ingress:
   host: gateway.dev.localhost
   tls: false
 
+service:
+  port: 1234 # this may break routing completely, why?
+
 backend:
-  port: 9999   # wrong on purpose → /api will 502
+  port: 9999 # changed, but does it break anything, why/why not?
+
+api:
+  publicPath: /api/v2 # how does this change our app?

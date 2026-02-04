@@ -1,4 +1,19 @@
-﻿# Helm chart assignment
+﻿# Simplest chart
+
+Included to demo the absolute basics of a Helm chart.
+`simple-chart` only has a single kubernetes Deployment and 1 template value.
+
+1. Install: `helm install simple ./simplest-chart`
+2. Change image: `helm upgrade simple ./simplest-chart --set imageTag=stable`
+3. Uninstall: `helm uninstall simple`
+
+In the above commands `simple` is the release-name. It can be installed several times under different namespaces.
+
+Try installing in a different namespace:
+1. Create namespace: `kubectl create namespace demo`
+2. Install into namespace: `helm install simple ./simplest-chart --namespace demo`, what happens?
+
+# Helm chart assignment
 
 ## Tools
 

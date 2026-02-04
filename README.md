@@ -1,24 +1,9 @@
-﻿# Simplest chart
-
-Included to demo the absolute basics of a Helm chart.
-`simple-chart` only has a single kubernetes Deployment and 1 template value.
-
-1. Install: `helm install simple ./simplest-chart`
-2. Change image: `helm upgrade simple ./simplest-chart --set imageTag=stable`
-3. Uninstall: `helm uninstall simple`
-
-In the above commands `simple` is the release-name. It can be installed several times under different namespaces.
-
-Try installing in a different namespace:
-1. Create namespace: `kubectl create namespace demo`
-2. Install into namespace: `helm install simple ./simplest-chart --namespace demo`, what happens?
-
-# Helm chart assignment
+﻿# Helm chart assignment
 
 ## Tools
 
-- [Helm](https://helm.sh)
-- Visual Studio Code + Kubernetes extension
+- [Helm CLI tool](https://helm.sh)
+- Recommended editor: Visual Studio Code + Kubernetes extension
 
 ## Docs
 
@@ -28,15 +13,32 @@ Try installing in a different namespace:
 
 ## Useful commands
 
-- Install: `helm install <release-name> ./gateway-chart -f values-dev.yml (-n <namespace>)`
-- Upgrade: `helm upgrade <release-name> ./gateway-chart (-n <namespace>)`
+- Create chart skeleton: `helm create <chart-name>`
+- Install chart: `helm install <release-name> ./gateway-chart -f values-dev.yml (-n <namespace>)`
+- Upgrade chart: `helm upgrade <release-name> ./gateway-chart (-n <namespace>)`
     - useful flags: `--reset-then-reuse-values --atomic`
-- History: `helm history <release-name> (-n <namespace>)`
-- Rollback: `helm rollback <release-name> <revision> (-n <namespace>)`
+- Release history: `helm history <release-name> (-n <namespace>)`
+- Release rollback: `helm rollback <release-name> <revision> (-n <namespace>)`
 
 ## Tasks
 
-### Task 1: Implement TODOs so the chart deploys and works.
+### Task 1: Install and experiment with `simplest-chart`
+
+Demos the absolute basics of a Helm chart.
+`simple-chart` only has a single kubernetes Deployment, a ConfigMap and 2 template values.
+
+1. Install: `helm install simple ./simplest-chart`
+2. Enable HTML override: `helm upgrade simple ./simplest-chart --set overrideHtml=true`
+3. Change image: `helm upgrade simple ./simplest-chart --set imageTag=stable`
+4. Uninstall: `helm uninstall simple`
+
+In the above commands `simple` is the release-name. It can be installed several times under different names & namespaces.
+
+Try installing in a different namespace:
+1. Create namespace: `kubectl create namespace demo`
+2. Install into namespace: `helm install simple ./simplest-chart --namespace demo`, what happens?
+
+### Task 2: Implement TODOs in `gateway-chart`
 
 Success criteria:
 - Value `api.enabled` toggles /api route.
@@ -53,7 +55,7 @@ After install:
 - `/` returns gateway text
 - `/api` returns backend text
 
-### Task 2: Break stuff!
+### Task 3: Break stuff!
 
 Break your app, then fix it again:
 1. Upgrade the chart using `-f values-broken.yml`
@@ -61,14 +63,15 @@ Break your app, then fix it again:
 3. Check the `values-broken.yml` comments
 4. Answer and solve the issues one by one.
 
-### Task 3: Other ways to make a chart
-
-- Use `helm create <chart-name>` and start from that template.
-- Can a chart depend on another chart? How does that work?
-
-### Task 4: Installing from repository
+### Task 5: Installing from repository
 
 - Charts can be installed from a repository
 - Check available apps `helm search repo <repo>`
 - Check available versions of specific chart `helm search repo <repo>/<chart> --versions`
 - Install a given app: `helm install <repo>/<chart> --version "1.2.3."`
+
+Suggested repos you can add:
+- https://helm.github.io/examples (hello-world app)
+- https://helm.elastic.co (elasticsearch)
+- https://charts.gitlab.io/ (gitlab)
+- https://github.com/cdwv/awesome-helm?tab=readme-ov-file#repositories--hubs

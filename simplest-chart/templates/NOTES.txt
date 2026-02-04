@@ -3,7 +3,11 @@
 Using nginx tag {{ .Values.imageTag }}
 
 Test Deployment:
-  kubectl port-forward deploy/simple-nginx -n {{ .Release.Namespace }} 8888:80
+  kubectl port-forward deploy/simplest-nginx -n {{ .Release.Namespace }} 8888:80
 
 Exec into Deployment:
-  kubectl exec -it deploy/simple-nginx -n {{ .Release.Namespace }} -- /bin/sh
+  kubectl exec -it deploy/simplest-nginx -n {{ .Release.Namespace }} -- /bin/sh
+
+Possible values:
+  `imageTag` changes the nginx tag used (default: alpine)
+  `overrideHtml` flag enables overriding the default nginx HTML file (default: false)

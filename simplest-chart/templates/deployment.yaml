@@ -10,6 +10,8 @@ spec:
       app.kubernetes.io/instance: {{ .Release.Name }}
   template:
     metadata:
+      annotations:
+        revision: {{ .Release.Revision | quote }} # Makes sure the deployment is restarted on every upgrade
       labels:
         app.kubernetes.io/name: simplest-nginx
         app.kubernetes.io/instance: {{ .Release.Name }}
@@ -24,5 +26,18 @@ spec:
             httpGet:
               path: /
               port: 80
-            initialDelaySeconds: 2
-            periodSeconds: 5
+            initialDelaySeconds: 1
+            periodSeconds: 1
+{{ if .Values.overrideHtml }}
+          volumeMounts:
+            - mountPath: /usr/share/nginx/html/index.html
+              name: nginx-default-html
+              readOnly: true
+              subPath: my.html
+      volumes:
+      - name: nginx-default-html
+        configMap:
+          name: simplest-html-configmap
+          defaultMode: 420
+          optional: false
+{{- end -}}

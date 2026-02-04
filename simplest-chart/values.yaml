@@ -1,2 +1,5 @@
 ﻿# See possible nginx image tags: https://hub.docker.com/_/nginx/tags
 imageTag: alpine
+
+# Enables override of the default nginx HTML via a volume mount.
+overrideHtml: false

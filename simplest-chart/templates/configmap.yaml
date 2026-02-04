@@ -1,0 +1,15 @@
+﻿apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: simplest-html-configmap
+data:
+  my.html: |-
+    <html>
+      <head>
+          <title>Kubernetes Workshop</title>
+      </head>
+      <body>
+          <h1>Kubernetes Workshop</h1>
+          <p>Hello, this is the default nginx index.html file</p>
+          <p>This HTML file is mounted into the nginx container via a ConfigMap</p>
+    </html>

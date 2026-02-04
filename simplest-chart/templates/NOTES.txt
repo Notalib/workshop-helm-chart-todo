@@ -1,0 +1,9 @@
+﻿Simplest chart has been installed.
+
+Using nginx tag {{ .Values.imageTag }}
+
+Test Deployment:
+  kubectl port-forward deploy/simple-nginx -n {{ .Release.Namespace }} 8888:80
+
+Exec into Deployment:
+  kubectl exec -it deploy/simple-nginx -n {{ .Release.Namespace }} -- /bin/sh

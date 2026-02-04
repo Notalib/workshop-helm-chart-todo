@@ -1,0 +1,6 @@
+﻿apiVersion: v2
+name: simplest-app
+description: Simplest helm chart with only a single nginx container and 1 template value.
+type: application
+version: 0.1.0
+appVersion: "1.0.0"

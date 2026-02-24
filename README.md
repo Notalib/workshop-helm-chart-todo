@@ -28,9 +28,11 @@ Demos the absolute basics of a Helm chart.
 `simple-chart` only has a single kubernetes Deployment, a ConfigMap and 2 template values.
 
 1. Install: `helm install simple ./simplest-chart`
-2. Enable HTML override: `helm upgrade simple ./simplest-chart --set overrideHtml=true`
-3. Change image: `helm upgrade simple ./simplest-chart --set imageTag=stable`
-4. Uninstall: `helm uninstall simple`
+2. Test the deployment: `kubectl port-forward deploy/simplest-nginx 8080:80`
+3. Enable HTML override: `helm upgrade simple ./simplest-chart --set overrideHtml=true`
+4. What happened to the deployment's website?
+5. Change image: `helm upgrade simple ./simplest-chart --set imageTag=stable`
+6. Uninstall: `helm uninstall simple`
 
 In the above commands `simple` is the release-name. It can be installed several times under different names & namespaces.
 

@@ -8,8 +8,11 @@ data:
       <head>
           <title>Kubernetes Workshop</title>
       </head>
-      <body>
+      <body style="width: 35em; margin: 3em auto;">
           <h1>Kubernetes Workshop</h1>
           <p>Hello, this is the default nginx index.html file</p>
           <p>This HTML file is mounted into the nginx container via a ConfigMap</p>
+
+          <h2>I've been told your name is {{ .Values.myName }}!</h2>
+      </body>
     </html>

@@ -11,3 +11,4 @@ Exec into Deployment:
 Possible values:
   `imageTag` changes the nginx tag used (default: alpine)
   `overrideHtml` flag enables overriding the default nginx HTML file (default: false)
+  `myName` changes the name used in the contents of the overridden HTML.

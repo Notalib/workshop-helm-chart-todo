@@ -1,5 +1,8 @@
 ﻿# See possible nginx image tags: https://hub.docker.com/_/nginx/tags
-imageTag: alpine
+# Examples: latest, stable, alpine, stable-bookworm-perl, or specific version: 1.29.5
+imageTag: stable
 
 # Enables override of the default nginx HTML via a volume mount.
 overrideHtml: false
+
+myName: Bolette

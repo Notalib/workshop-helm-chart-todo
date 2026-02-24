@@ -7,12 +7,12 @@ metadata:
 data:
   default.conf: |-
     server {
-      listen 80;
+      listen {{ .Values.service.port }};
       server_name _;
       error_page 404 @sorry;
 
       location @sorry {
-        return 404 "Gateway dead-end\n";
+        return 404 "Gateway dead-end, sorry!\n";
       }
 
       location = /healthz {

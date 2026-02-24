@@ -30,9 +30,9 @@ Demos the absolute basics of a Helm chart.
 1. Install: `helm install simple ./simplest-chart`
 2. Test the deployment: `kubectl port-forward deploy/simplest-nginx 8080:80`
 3. Enable HTML override: `helm upgrade simple ./simplest-chart --set overrideHtml=true`
-4. What happened to the deployment's website?
-5. Change image: `helm upgrade simple ./simplest-chart --set imageTag=stable`
-6. Uninstall: `helm uninstall simple`
+4. What happened to the deployment's website? Try changing the HTML in the ConfigMap
+6. Change image: `helm upgrade simple ./simplest-chart --set imageTag=stable`
+7. Uninstall: `helm uninstall simple`
 
 In the above commands `simple` is the release-name. It can be installed several times under different names & namespaces.
 

@@ -44,6 +44,7 @@ Try installing in a different namespace:
 
 Success criteria:
 - Value `api.enabled` toggles /api route.
+- Value `service.port` controls the exposed port of the nginx proxy.
 - Value `backend.port` controls which port nginx proxies to.
 - Value `backend.text` changes the /api response.
 - Value `replicaCount` affects number of pods.
@@ -65,10 +66,16 @@ Break your app, then fix it again:
 3. Check the `values-broken.yml` comments
 4. Answer and solve the issues one by one.
 
+### Task 4: Install 2 versions of gateway-chart at the same time!
+
+1. Install 2 versions of gateway-chart in each their namespace use `--namespace x` when installing).
+2. Do they conflict? How to fix this?
+
 ### Task 5: Installing from repository
 
 - Charts can be installed from a repository
-- Check available apps `helm search repo <repo>`
+- Add a repository: `helm repo add <name> <url>`
+- Search for available apps `helm search repo <repo>`
 - Check available versions of specific chart `helm search repo <repo>/<chart> --versions`
 - Install a given app: `helm install <repo>/<chart> --version "1.2.3."`
 

@@ -1,7 +1,7 @@
 ﻿replicaCount: 1
 
 ingress:
-  host: gateway.dev.localhost
+  host: gateway-dev.localhost
   tls: false
 
 backend:

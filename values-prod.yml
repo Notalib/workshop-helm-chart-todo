@@ -1,7 +1,7 @@
 ﻿replicaCount: 3
 
 ingress:
-  host: gateway.prod.localhost # NOTES.txt is wrong now, how do you curl the app?
+  host: gateway-prod.localhost # NOTES.txt is wrong now, how do you curl the app?
   tls: true
 
 backend:

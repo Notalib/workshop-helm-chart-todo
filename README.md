@@ -16,7 +16,7 @@
 - Create chart skeleton: `helm create <chart-name>`
 - Install chart: `helm install <release-name> ./gateway-chart -f values-dev.yml (-n <namespace>)`
 - Upgrade chart: `helm upgrade <release-name> ./gateway-chart (-n <namespace>)`
-    - useful flags: `--reset-then-reuse-values --atomic`
+    - useful flags: `--reset-values --atomic`
 - Release history: `helm history <release-name> (-n <namespace>)`
 - Release rollback: `helm rollback <release-name> <revision> (-n <namespace>)`
 
@@ -28,7 +28,7 @@ Demos the absolute basics of a Helm chart.
 `simple-chart` only has a single kubernetes Deployment, a ConfigMap and 2 template values.
 
 1. Install: `helm install simple ./simplest-chart`
-2. Test the deployment: `kubectl port-forward deploy/simplest-nginx 8080:80`
+2. Test the deployment: `kubectl port-forward deploy/simplest-nginx 8888:80`
 3. Enable HTML override: `helm upgrade simple ./simplest-chart --set overrideHtml=true`
 4. What happened to the deployment's website? Try changing the HTML in the ConfigMap
 6. Change image: `helm upgrade simple ./simplest-chart --set imageTag=stable`

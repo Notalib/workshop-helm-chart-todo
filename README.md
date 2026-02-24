@@ -42,11 +42,15 @@ Try installing in a different namespace:
 
 ### Task 2: Implement TODOs in `gateway-chart`
 
+1. Install gateway-chart.
+2. Test that the basics are working according to NOTES.txt output.
+3. Implement the TODOs in templated manifests.
+
 Success criteria:
-- Value `api.enabled` toggles /api route.
+- Value `api.enabled` toggles /api route to the backend container.
 - Value `service.port` controls the exposed port of the nginx proxy.
-- Value `backend.port` controls which port nginx proxies to.
-- Value `backend.text` changes the /api response.
+- Value `backend.port` controls which port the backend exposes and nginx proxies to (if enabled).
+- Value `backend.text` changes the backend /api response.
 - Value `replicaCount` affects number of pods.
 
 #### “Definition of done” checks

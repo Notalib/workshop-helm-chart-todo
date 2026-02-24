@@ -13,7 +13,7 @@ service:
 ingress:
   enabled: true
   className: nginx
-  host: my-gateway.localhost
+  host: gateway.localhost
   tls: false
   annotations: {}
 

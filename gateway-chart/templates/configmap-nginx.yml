@@ -25,7 +25,7 @@ data:
         return 200 "Gateway is up for {{ .Release.Name }}\n";
       }
 
-      # TODO: Skip the next parts if api.enabled
+      # TODO: Only include the next part if api.enabled is true
       location = {{ .Values.api.publicPath }} {
         return 308 {{ .Values.api.publicPath }}/;
       }

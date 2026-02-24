@@ -35,13 +35,13 @@ spec:
           readinessProbe:
             httpGet:
               path: /
-              port: 80 # TODO: This is hardcoded
+              port: 80 # TODO: This is hardcoded, what if service.port changes?
             initialDelaySeconds: 2
             periodSeconds: 5
           livenessProbe:
             httpGet:
               path: /healthz
-              port: 80 # TODO: This is hardcoded
+              port: 80 # TODO: This is hardcoded, what if service.port changes?
             initialDelaySeconds: 3
 
         - name: backend

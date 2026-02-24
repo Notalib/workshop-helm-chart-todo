@@ -1,4 +1,5 @@
-﻿replicaCount: 1
+﻿
+replicaCount: 1
 
 ingress:
   host: gateway-dev.localhost
